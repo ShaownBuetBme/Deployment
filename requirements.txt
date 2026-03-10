@@ -1,0 +1,8 @@
+# Python dependencies for local and CI execution
+
+#start code here
+# TODO: add web framework (fastapi or flask)
+# TODO: add server runtime (uvicorn if using FastAPI)
+# TODO: add test framework (pytest)
+# TODO: add optional linting tools (ruff/flake8)
+#send code here

@@ -1,0 +1,8 @@
+# Local multi-service orchestration
+
+#start code here
+# TODO: define app service build context and port mapping
+# TODO: pass environment variables
+# TODO: optionally define a test service running pytest
+# TODO: set restart policy and depends_on if needed
+#send code here

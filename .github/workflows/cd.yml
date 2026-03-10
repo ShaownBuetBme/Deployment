@@ -1,0 +1,22 @@
+name: CD
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      #start code here
+      # TODO: checkout repo
+      # TODO: authenticate to cloud provider or registry
+      # TODO: build and push image with immutable tag
+      # TODO: deploy image to managed container platform
+      # TODO: run post-deploy health verification
+      #send code here

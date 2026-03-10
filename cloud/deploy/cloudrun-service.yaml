@@ -1,0 +1,10 @@
+# Example cloud deployment template (Cloud Run style)
+# Adapt if you choose ECS or Azure Container Apps instead.
+
+#start code here
+# TODO: define service name
+# TODO: define container image URI
+# TODO: define env vars and secrets references
+# TODO: define CPU/memory and min/max instances
+# TODO: define port and health settings
+#send code here

@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      #start code here
+      # TODO: checkout repo
+      # TODO: setup python
+      # TODO: install dependencies
+      # TODO: run lint checks
+      # TODO: run unit/integration tests
+      # TODO: build docker image as final CI gate
+      #send code here
