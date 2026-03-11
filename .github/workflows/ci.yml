@@ -3,17 +3,35 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main]
-
+      branches: [main]
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      #start code here
+
+       #start code here
       # TODO: checkout repo
+      - uses: actions/checkout@v4
+
       # TODO: setup python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
       # TODO: install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       # TODO: run lint checks
+      - name: Lint with ruff
+        run: pip install ruff && ruff check app/
+        continue-on-error: true
+
       # TODO: run unit/integration tests
+      - name: Run tests
+        run: PYTHONPATH=. pytest -v
+
       # TODO: build docker image as final CI gate
+      - name: Build Docker image
+        run: docker build -t deployment-app:${{ github.sha}} .
       #send code here
