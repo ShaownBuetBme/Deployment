@@ -2,7 +2,29 @@
 
 #start code here
 # TODO: define app service build context and port mapping
+version: '3.8'
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+
 # TODO: pass environment variables
+    environment:
+      PYTHONUNBUFFERED: "1"
+    restart: unless-stopped
+    volumes:
+      - ./artifacts:/app/artifacts:ro
+
 # TODO: optionally define a test service running pytest
+  test:
+    build: .
+    command: pytest -q
+    environment:
+      PYTHONPATH: "/app"
+
 # TODO: set restart policy and depends_on if needed
+    restart: unless-stopped
+    depends_on:
+      - api
 #send code here
