@@ -5,4 +5,8 @@
 # TODO: add server runtime (uvicorn if using FastAPI)
 # TODO: add test framework (pytest)
 # TODO: add optional linting tools (ruff/flake8)
-#send code here
+
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pytest>=7.4.3
+pydantic>=2.5.0

@@ -45,7 +45,7 @@ def health():
 @app.post("/predict", response_model = PredictResponse)
 def predict_endpoint(payload: PredictRequest):
     try:
-        result = predict(MODEL, payload.dict())
+        result = predict(MODEL, payload.model_dump())
         return PredictResponse(**result)
     except Exception as exc:
         raise HTTPException(status_code = 500, detail = str(exc))
