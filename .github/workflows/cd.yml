@@ -5,6 +5,9 @@ on:
   push:
     tags:
       - 'v*'
+env:
+  REGISTRY: ${{secrets.DIGITALOCEAN_REGISTRY_NAME }}
+  IMAGE_NAME: deployment-api
 
 jobs:
   deploy:
@@ -15,8 +18,46 @@ jobs:
     steps:
       #start code here
       # TODO: checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      #Extract version from tag
+      - name: Extract version
+        id: version
+        run: echo "VERSION = ${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
       # TODO: authenticate to cloud provider or registry
+      - name: Authenticate to DigitalOcean container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.DIGITALOCEAN_REGISTRY_NAME}}
+          username: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN}}
+          password: ${{ secrets.DIGITALOCEAN_TOKEN }}
+
       # TODO: build and push image with immutable tag
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.REGISTRY}}/${{ env.IMAGE_NAME}}:${{ steps.version.outputs.VERSION}}
+            ${{ env.REGISTRY}}/${{ env.IMAGE_NAME }}: latest
+          
+
       # TODO: deploy image to managed container platform
-      # TODO: run post-deploy health verification
+      - name: Deploy to DigitalOcean App Platform
+        uses: digitalocean/app_action@main
+        with: 
+          app_spec: app.yaml
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+       # TODO: run post-deploy health verification
+      - name: Health verification
+        run: |
+            # wait for deployment to be ready (adjust url based on yout app)
+            sleep 30
+            curl -f https://your-app-url.com/health || exit 1
+      
+     
       #send code here
