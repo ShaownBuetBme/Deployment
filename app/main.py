@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field
 from app.model_loader import load_model, predict
 
 MODEL_PATH = "artifacts/model.bin"
-MAINFEST_PATH = "artifacts/mainfest.json"
+MANIFEST_PATH = "artifacts/manifest.json"
 
 
 
@@ -27,7 +27,7 @@ class PredictResponse(BaseModel):
     score : float
 
 try: 
-    MODEL = load_model(MODEL_PATH, MAINFEST_PATH)
+    MODEL = load_model(MODEL_PATH, MANIFEST_PATH)
 except FileNotFoundError:
     MODEL = load_model(MODEL_PATH, None)
 
