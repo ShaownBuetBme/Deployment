@@ -1,3 +1,6 @@
+[![CI](https://github.com/ShaownBuetBme/Deployment/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ShaownBuetBme/Deployment/actions/workflows/ci.yml)
+[![CD](https://github.com/ShaownBuetBme/Deployment/actions/workflows/cd.yml/badge.svg)](https://github.com/ShaownBuetBme/Deployment/actions/workflows/cd.yml)
+
 # Deployment Learning Lab
 
 This repository is a guided hands-on lab to learn:
